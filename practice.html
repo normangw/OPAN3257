@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice &mdash; OPAN 3257</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  #sandbox textarea {
+    width: 100%;
+    min-height: 140px;
+    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  #sandbox .controls { margin: 0.75rem 0; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  #sandbox button {
+    background: var(--gu-blue);
+    color: #fff;
+    border: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  #sandbox button.secondary { background: var(--gu-gray); }
+  #sandbox button:hover { opacity: 0.9; }
+  #results { overflow-x: auto; }
+  #status { font-size: 0.85rem; color: var(--gu-gray); margin-top: 0.5rem; }
+  .exercise-list li { margin-bottom: 0.6rem; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">OPAN 3257 &middot; Georgetown</a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="topics.html">Topics</a>
+      <a href="practice.html" class="active">Practice</a>
+      <a href="assignments.html">Assignments &amp; Project</a>
+      <a href="advanced.html">Advanced</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Practice</h1>
+    <p class="subtitle">A live, in-browser SQL sandbox &mdash; no installation, no account, runs entirely on this page.</p>
+  </div>
+</section>
+
+<main>
+
+  <h2>Try it now</h2>
+  <p>
+    This sandbox runs a real SQLite database in your browser (via <a href="https://sql.js.org/" target="_blank" rel="noopener">sql.js</a>),
+    pre-loaded with a small <code>menu</code> / <code>customers</code> / <code>orders</code> schema like the ones
+    you'll build in class. Edit the query and click Run.
+  </p>
+
+  <div id="sandbox" class="card">
+    <textarea id="query">SELECT c.customer_name, o.order_id, o.order_total
+FROM customers AS c
+JOIN orders AS o ON c.customer_id = o.customer_id
+ORDER BY o.order_total DESC;</textarea>
+    <div class="controls">
+      <button id="run">Run query</button>
+      <button id="reset" class="secondary">Reset database</button>
+    </div>
+    <div id="status">Loading SQL engine&hellip;</div>
+    <div id="results"></div>
+  </div>
+
+  <h2>Exercises to try in the sandbox</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="badge beginner">Beginner</span>
+      <h4>Menu detective</h4>
+      <ul class="exercise-list">
+        <li>List every item in the <code>menu</code> table, cheapest first.</li>
+        <li>Find every item priced under $5.</li>
+        <li>Count how many items are in each <code>category</code>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="badge intermediate">Intermediate</span>
+      <h4>Customers &amp; orders</h4>
+      <ul class="exercise-list">
+        <li>Find every customer who has placed <strong>more than one</strong> order.</li>
+        <li>Compute each customer's total spend using <code>SUM</code> and <code>GROUP BY</code>.</li>
+        <li>List customers who have <strong>never</strong> placed an order (hint: <code>LEFT JOIN</code>).</li>
+      </ul>
+    </div>
+    <div class="card advanced">
+      <span class="badge advanced">Advanced</span>
+      <h4>Push further</h4>
+      <ul class="exercise-list">
+        <li>Segment customers into <code>high</code> / <code>medium</code> / <code>low</code> spenders with <code>CASE</code>.</li>
+        <li>Find the top-spending customer using a subquery, without hardcoding a number.</li>
+        <li>Write a <code>CTE</code> that ranks menu items by revenue if every order item were the same category.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    Stuck? Compare with the worked examples on <a href="topics.html">Topics</a>, or (once the semester starts)
+    ask the course's 24/7 AI tutor Gem linked on Canvas &mdash; remember it's for <em>learning</em>, not for the
+    Semester Project itself.
+  </div>
+
+</main>
+
+<footer>
+  OPAN 3257 &middot; Databases for Business &middot; Georgetown University McDonough School of Business &middot; Fall 2026
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js"></script>
+<script>
+(function () {
+  const statusEl = document.getElementById('status');
+  const resultsEl = document.getElementById('results');
+  const queryEl = document.getElementById('query');
+  let db = null;
+  let SQL = null;
+
+  const SEED_SQL = `
+    CREATE TABLE menu (
+      item_id INTEGER PRIMARY KEY,
+      item_name TEXT NOT NULL,
+      price REAL NOT NULL,
+      category TEXT
+    );
+    INSERT INTO menu VALUES
+      (1, 'Drip Coffee', 2.75, 'Coffee'),
+      (2, 'Cold Brew', 4.25, 'Coffee'),
+      (3, 'Latte', 4.75, 'Coffee'),
+      (4, 'Croissant', 3.50, 'Bakery'),
+      (5, 'Bagel', 2.95, 'Bakery'),
+      (6, 'Blueberry Muffin', 3.25, 'Bakery');
+
+    CREATE TABLE customers (
+      customer_id INTEGER PRIMARY KEY,
+      customer_name TEXT NOT NULL
+    );
+    INSERT INTO customers VALUES
+      (1, 'Amara Lewis'),
+      (2, 'Julian Osei'),
+      (3, 'Priya Shah'),
+      (4, 'Marco Diaz');
+
+    CREATE TABLE orders (
+      order_id INTEGER PRIMARY KEY,
+      customer_id INTEGER,
+      order_total REAL,
+      FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    );
+    INSERT INTO orders VALUES
+      (101, 1, 12.50),
+      (102, 1, 7.00),
+      (103, 2, 4.75),
+      (104, 3, 21.30);
+  `;
+
+  function renderResults(res) {
+    resultsEl.innerHTML = '';
+    if (!res || res.length === 0) {
+      resultsEl.innerHTML = '<p><em>Query ran with no rows returned.</em></p>';
+      return;
+    }
+    res.forEach(result => {
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      const headRow = document.createElement('tr');
+      result.columns.forEach(col => {
+        const th = document.createElement('th');
+        th.textContent = col;
+        headRow.appendChild(th);
+      });
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+      const tbody = document.createElement('tbody');
+      result.values.forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell === null ? 'NULL' : cell;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      resultsEl.appendChild(table);
+    });
+  }
+
+  function resetDb() {
+    if (db) db.close();
+    db = new SQL.Database();
+    db.run(SEED_SQL);
+    statusEl.textContent = 'Database ready: menu, customers, orders. Edit the query above and click Run.';
+    resultsEl.innerHTML = '';
+  }
+
+  function runQuery() {
+    try {
+      const res = db.exec(queryEl.value);
+      renderResults(res);
+      statusEl.textContent = 'Query executed successfully.';
+    } catch (err) {
+      resultsEl.innerHTML = '';
+      statusEl.textContent = 'Error: ' + err.message;
+    }
+  }
+
+  document.getElementById('run').addEventListener('click', runQuery);
+  document.getElementById('reset').addEventListener('click', resetDb);
+
+  window.initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/${file}` })
+    .then(function (sql) {
+      SQL = sql;
+      resetDb();
+      runQuery();
+    })
+    .catch(function (err) {
+      statusEl.textContent = 'Could not load the SQL engine (' + err.message + '). Check your connection and reload.';
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignments &amp; Project &mdash; OPAN 3257</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">OPAN 3257 &middot; Georgetown</a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="topics.html">Topics</a>
+      <a href="practice.html">Practice</a>
+      <a href="assignments.html" class="active">Assignments &amp; Project</a>
+      <a href="advanced.html">Advanced</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Assignments &amp; Semester Project</h1>
+    <p class="subtitle">A preview of what's coming &mdash; official instructions, datasets, due dates, and grading live on Canvas.</p>
+  </div>
+</section>
+
+<main>
+
+  <div class="note">
+    This page is a <strong>preview</strong>, not the assignment itself. Full instructions, starter files, and due
+    dates are posted on Canvas as each one is assigned &mdash; check there for anything graded.
+  </div>
+
+  <h2>The five assignments</h2>
+  <p>Each carries forward the business arc of the course, individually submitted with team discussion allowed (Type B).</p>
+
+  <div class="card">
+    <h4>Assignment 1 &middot; The Catalog &amp; the Customer</h4>
+    <p>Single-table analysis of a retail product catalog and a CRM export.</p>
+    <p><strong>Skills:</strong> <code>SELECT</code>, <code>WHERE</code>, text functions, arithmetic.</p>
+    <p><strong>Hint to get ahead:</strong> practice filtering and cleaning text on the <code>menu</code> table in the <a href="practice.html">sandbox</a> &mdash; that's the exact skill set.</p>
+  </div>
+
+  <div class="card">
+    <h4>Assignment 2 &middot; The Monday-Morning Report</h4>
+    <p>The recurring KPI questions every operator asks: revenue by region, top products, repeat-customer share.</p>
+    <p><strong>Skills:</strong> <code>GROUP BY</code>, <code>HAVING</code>, aggregates, <code>ORDER BY</code>/<code>LIMIT</code>.</p>
+    <p><strong>Hint to get ahead:</strong> the "Customers &amp; orders" exercises on <a href="practice.html">Practice</a> use the same pattern &mdash; total spend per customer.</p>
+  </div>
+
+  <div class="card">
+    <h4>Assignment 3 &middot; Moneyball</h4>
+    <p>The original data-driven hiring problem: join player, salary, and performance tables to find undervalued talent.</p>
+    <p><strong>Skills:</strong> multi-table <code>JOIN</code>s.</p>
+    <p><strong>Hint to get ahead:</strong> review the JOIN example on <a href="topics.html">Topics</a> &mdash; connecting a "who" table to a "what happened" table is the whole idea.</p>
+  </div>
+
+  <div class="card">
+    <h4>Assignment 4 &middot; Packages, Please</h4>
+    <p>Trace lost parcels through a last-mile delivery database &mdash; detective work with joins and subqueries.</p>
+    <p><strong>Skills:</strong> <code>JOIN</code> + subqueries.</p>
+    <p><strong>Hint to get ahead:</strong> try the "advanced" subquery exercise on <a href="practice.html">Practice</a> (top-spending customer without hardcoding a number).</p>
+  </div>
+
+  <div class="card">
+    <h4>Assignment 5 &middot; The SQL Gauntlet</h4>
+    <p>Ten progressively harder analytical queries over a large multi-table dataset, run in DuckDB. Your capstone in place of a final exam &mdash; there is no final exam in this course.</p>
+    <p><strong>Skills:</strong> everything, at warehouse scale.</p>
+  </div>
+
+  <h2>Mini-Challenges</h2>
+  <p>Six short, individual, in-class problems (lowest score dropped): a campus coffee-shop menu table, extracting fields from a customer table, fraud/returns-screening filters, building and populating an inventory table, a JOIN store analysis, and a <code>GROUP BY</code> customer&ndash;order analysis. The sandbox on <a href="practice.html">Practice</a> is good warm-up for all six.</p>
+
+  <h2>Semester Project: pick your industry, run its data</h2>
+  <p>
+    Working in teams of 3&ndash;4, you'll act as an analytics consulting group reporting to a COO: design and build
+    a relational database for a real operating business, query it to locate operational bottlenecks, and ship the
+    results as a live Streamlit dashboard. One project, two parts &mdash; a midterm design/build submission, then a
+    final analyze/recommend/deploy submission with an individual oral defense.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h4>Track R &middot; Retail &amp; E-Commerce</h4>
+      <p>~100k real orders across eight linked tables (Olist Brazilian e-commerce). Where do delivery promises slip? Do late deliveries cost review stars?</p>
+    </div>
+    <div class="card">
+      <h4>Track D &middot; Last-Mile Delivery &amp; Logistics</h4>
+      <p>Depots, drivers, vehicles, routes, packages, delivery attempts. What's the failed-first-attempt rate, and what does redelivery cost?</p>
+    </div>
+    <div class="card">
+      <h4>Track H &middot; Hospitality &amp; Marketplace</h4>
+      <p>An Inside Airbnb city extract. Which neighborhoods are supply-constrained? What separates high-occupancy hosts?</p>
+    </div>
+  </div>
+
+  <p>Teams may also propose their own dataset with instructor approval &mdash; including healthcare operations.</p>
+
+  <div class="note">
+    <strong>Note on AI tools:</strong> the course provides a 24/7 AI tutor to help you <em>learn</em> SQL, but
+    generative AI tools are <strong>not permitted on the Semester Project</strong> itself (Parts 1 and 2). Credit is
+    earned through queries you can defend orally.
+  </div>
+
+</main>
+
+<footer>
+  OPAN 3257 &middot; Databases for Business &middot; Georgetown University McDonough School of Business &middot; Fall 2026
+</footer>
+
+</body>
+</html>

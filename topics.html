@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics &mdash; OPAN 3257</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">OPAN 3257 &middot; Georgetown</a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="topics.html" class="active">Topics</a>
+      <a href="practice.html">Practice</a>
+      <a href="assignments.html">Assignments &amp; Project</a>
+      <a href="advanced.html">Advanced</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Topics</h1>
+    <p class="subtitle">A preview of the module arc, with a runnable-style example for each stop.</p>
+  </div>
+</section>
+
+<main>
+
+  <div class="note">
+    This mirrors the course calendar's module groups (A&ndash;H). Each example uses a small imaginary
+    <code>menu</code>, <code>customers</code>, or <code>orders</code> table &mdash; the same style of table you'll
+    build live in Colab.
+  </div>
+
+  <h2>Module A &middot; Foundations</h2>
+  <p>What data is, why spreadsheets break at scale, and your first SQLite table.</p>
+  <pre><code>CREATE TABLE menu (
+    item_id     INTEGER PRIMARY KEY,
+    item_name   TEXT NOT NULL,
+    price       REAL NOT NULL,
+    category    TEXT
+);</code></pre>
+
+  <h2>Module B &middot; Reading Data with SELECT</h2>
+  <p><code>SELECT</code>, choosing columns, and <code>WHERE</code> &mdash; the core of asking a database a question.</p>
+  <pre><code>SELECT item_name, price
+FROM menu
+WHERE category = 'Coffee' AND price &lt; 5;</code></pre>
+
+  <h2>Module C &middot; Multiple Conditions &amp; Text/Math Functions</h2>
+  <p>Combining filters with <code>AND</code>/<code>OR</code>, cleaning text, and doing arithmetic in a query.</p>
+  <pre><code>SELECT
+    UPPER(item_name) AS item,
+    price,
+    ROUND(price * 1.06, 2) AS price_with_tax
+FROM menu
+WHERE price &gt;= 3 OR category = 'Bakery';</code></pre>
+
+  <h2>Module D &middot; Writing &amp; Changing Data</h2>
+  <p><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> &mdash; and why the <code>WHERE</code> clause is a safety device.</p>
+  <pre><code>INSERT INTO menu (item_id, item_name, price, category)
+VALUES (101, 'Cold Brew', 4.25, 'Coffee');
+
+UPDATE menu SET price = 4.50 WHERE item_id = 101;</code></pre>
+
+  <h2>Module E &middot; Connecting Tables: JOINs</h2>
+  <p>The big idea of the course: linking related tables together.</p>
+  <pre><code>SELECT c.customer_name, o.order_id, o.order_total
+FROM customers AS c
+INNER JOIN orders AS o
+    ON c.customer_id = o.customer_id
+ORDER BY o.order_total DESC;</code></pre>
+
+  <h2>Module F &middot; Summarizing Data</h2>
+  <p><code>GROUP BY</code>, <code>HAVING</code>, aggregate functions, sorting and limiting &mdash; the manager's SQL behind every KPI dashboard.</p>
+  <pre><code>SELECT category, COUNT(*) AS items, AVG(price) AS avg_price
+FROM menu
+GROUP BY category
+HAVING COUNT(*) &gt; 2
+ORDER BY avg_price DESC
+LIMIT 5;</code></pre>
+
+  <h2>Module G &middot; Advanced Querying</h2>
+  <p>Three-table joins and subqueries &mdash; the pattern you'll reuse directly in the semester project.</p>
+  <pre><code>SELECT seller_id, AVG(delivery_days) AS avg_delivery
+FROM orders
+GROUP BY seller_id
+HAVING AVG(delivery_days) &lt; (
+    SELECT AVG(delivery_days) FROM orders
+);</code></pre>
+
+  <h2>Module H &middot; The Modern Analytics Stack</h2>
+  <p>Importing CSVs, warehouse-grade SQL directly over files with <strong>DuckDB</strong>, and <code>CASE</code> segmentation.</p>
+  <pre><code>-- DuckDB, querying a CSV directly &mdash; no loading step
+SELECT
+    customer_id,
+    CASE
+        WHEN total_spent &gt; 500 THEN 'loyal'
+        WHEN total_spent &gt; 100 THEN 'active'
+        ELSE 'at-risk'
+    END AS segment
+FROM read_csv_auto('orders.csv')
+GROUP BY customer_id, total_spent;</code></pre>
+
+  <div class="note">
+    Ready to run these yourself? Head to <a href="practice.html">Practice</a> for zero-install, browser-based
+    SQL sandboxes.
+  </div>
+
+</main>
+
+<footer>
+  OPAN 3257 &middot; Databases for Business &middot; Georgetown University McDonough School of Business &middot; Fall 2026
+</footer>
+
+</body>
+</html>
