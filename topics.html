@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topics &mdash; OPAN 3257</title>
+<title>Course Topics &middot; OPAN 3257</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,23 +21,25 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-inner">
+<div class="page-title">
+  <div class="page-title-inner">
+    <span class="eyebrow">Module walkthrough</span>
     <h1>Topics</h1>
-    <p class="subtitle">A preview of the module arc, with a runnable-style example for each stop.</p>
+    <p class="subtitle">Eight stops through the semester, each with a working example. Try any of them yourself in the sandbox on <a href="practice.html">Practice</a>.</p>
   </div>
-</section>
+</div>
 
 <main>
 
-  <div class="note">
-    This mirrors the course calendar's module groups (A&ndash;H). Each example uses a small imaginary
-    <code>menu</code>, <code>customers</code>, or <code>orders</code> table &mdash; the same style of table you'll
-    build live in Colab.
+  <div class="note note--aside">
+    These mirror Module Groups A through H on the course calendar. Every example queries a small imaginary
+    <code>menu</code>, <code>customers</code>, or <code>orders</code> table, the same shape you'll build live in
+    Colab.
   </div>
 
+  <span class="eyebrow">Getting oriented</span>
   <h2>Module A &middot; Foundations</h2>
-  <p>What data is, why spreadsheets break at scale, and your first SQLite table.</p>
+  <p>Your first table, built the same way you'll build every table after it.</p>
   <pre><code>CREATE TABLE menu (
     item_id     INTEGER PRIMARY KEY,
     item_name   TEXT NOT NULL,
@@ -45,14 +47,16 @@
     category    TEXT
 );</code></pre>
 
+  <span class="eyebrow">The core verb</span>
   <h2>Module B &middot; Reading Data with SELECT</h2>
-  <p><code>SELECT</code>, choosing columns, and <code>WHERE</code> &mdash; the core of asking a database a question.</p>
+  <p>What's the first thing an analyst does with a new table? Look at it, filtered down to what actually matters.</p>
   <pre><code>SELECT item_name, price
 FROM menu
 WHERE category = 'Coffee' AND price &lt; 5;</code></pre>
 
+  <span class="eyebrow">Combining filters</span>
   <h2>Module C &middot; Multiple Conditions &amp; Text/Math Functions</h2>
-  <p>Combining filters with <code>AND</code>/<code>OR</code>, cleaning text, and doing arithmetic in a query.</p>
+  <p>Two filters at once, plus enough arithmetic to compute a bill.</p>
   <pre><code>SELECT
     UPPER(item_name) AS item,
     price,
@@ -60,23 +64,26 @@ WHERE category = 'Coffee' AND price &lt; 5;</code></pre>
 FROM menu
 WHERE price &gt;= 3 OR category = 'Bakery';</code></pre>
 
+  <span class="eyebrow">Changing data safely</span>
   <h2>Module D &middot; Writing &amp; Changing Data</h2>
-  <p><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> &mdash; and why the <code>WHERE</code> clause is a safety device.</p>
+  <p>The <code>WHERE</code> clause here isn't optional. Leave it off an <code>UPDATE</code> and you rewrite every row in the table.</p>
   <pre><code>INSERT INTO menu (item_id, item_name, price, category)
 VALUES (101, 'Cold Brew', 4.25, 'Coffee');
 
 UPDATE menu SET price = 4.50 WHERE item_id = 101;</code></pre>
 
+  <span class="eyebrow">The big idea</span>
   <h2>Module E &middot; Connecting Tables: JOINs</h2>
-  <p>The big idea of the course: linking related tables together.</p>
+  <p>This is the one concept the rest of the course leans on.</p>
   <pre><code>SELECT c.customer_name, o.order_id, o.order_total
 FROM customers AS c
 INNER JOIN orders AS o
     ON c.customer_id = o.customer_id
 ORDER BY o.order_total DESC;</code></pre>
 
+  <span class="eyebrow">Manager's SQL</span>
   <h2>Module F &middot; Summarizing Data</h2>
-  <p><code>GROUP BY</code>, <code>HAVING</code>, aggregate functions, sorting and limiting &mdash; the manager's SQL behind every KPI dashboard.</p>
+  <p>Revenue by region, top products, repeat-customer share: every KPI dashboard reduces to <code>GROUP BY</code>.</p>
   <pre><code>SELECT category, COUNT(*) AS items, AVG(price) AS avg_price
 FROM menu
 GROUP BY category
@@ -84,8 +91,9 @@ HAVING COUNT(*) &gt; 2
 ORDER BY avg_price DESC
 LIMIT 5;</code></pre>
 
+  <span class="eyebrow">Going multi-table</span>
   <h2>Module G &middot; Advanced Querying</h2>
-  <p>Three-table joins and subqueries &mdash; the pattern you'll reuse directly in the semester project.</p>
+  <p>Which sellers beat their category's average? A subquery answers that in one pass, no hardcoded number required.</p>
   <pre><code>SELECT seller_id, AVG(delivery_days) AS avg_delivery
 FROM orders
 GROUP BY seller_id
@@ -93,9 +101,10 @@ HAVING AVG(delivery_days) &lt; (
     SELECT AVG(delivery_days) FROM orders
 );</code></pre>
 
+  <span class="eyebrow">The modern stack</span>
   <h2>Module H &middot; The Modern Analytics Stack</h2>
-  <p>Importing CSVs, warehouse-grade SQL directly over files with <strong>DuckDB</strong>, and <code>CASE</code> segmentation.</p>
-  <pre><code>-- DuckDB, querying a CSV directly &mdash; no loading step
+  <p>DuckDB reads the CSV directly. No import step, no schema to define first.</p>
+  <pre><code>-- DuckDB, querying a CSV directly, no loading step
 SELECT
     customer_id,
     CASE
@@ -106,9 +115,8 @@ SELECT
 FROM read_csv_auto('orders.csv')
 GROUP BY customer_id, total_spent;</code></pre>
 
-  <div class="note">
-    Ready to run these yourself? Head to <a href="practice.html">Practice</a> for zero-install, browser-based
-    SQL sandboxes.
+  <div class="note note--crosslink">
+    Try these yourself in the sandbox on <a href="practice.html">Practice</a>, where the same tables are already loaded and waiting.
   </div>
 
 </main>

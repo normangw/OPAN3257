@@ -3,35 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Practice &mdash; OPAN 3257</title>
+<title>SQL Sandbox &middot; OPAN 3257</title>
 <link rel="stylesheet" href="css/style.css">
-<style>
-  #sandbox textarea {
-    width: 100%;
-    min-height: 140px;
-    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
-    font-size: 0.9rem;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-  }
-  #sandbox .controls { margin: 0.75rem 0; display: flex; gap: 0.6rem; flex-wrap: wrap; }
-  #sandbox button {
-    background: var(--gu-blue);
-    color: #fff;
-    border: none;
-    padding: 0.55rem 1.1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-  }
-  #sandbox button.secondary { background: var(--gu-gray); }
-  #sandbox button:hover { opacity: 0.9; }
-  #results { overflow-x: auto; }
-  #status { font-size: 0.85rem; color: var(--gu-gray); margin-top: 0.5rem; }
-  .exercise-list li { margin-bottom: 0.6rem; }
-</style>
 </head>
 <body>
 
@@ -48,12 +21,13 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-inner">
+<div class="page-title">
+  <div class="page-title-inner">
+    <span class="eyebrow">Zero install</span>
     <h1>Practice</h1>
-    <p class="subtitle">A live, in-browser SQL sandbox &mdash; no installation, no account, runs entirely on this page.</p>
+    <p class="subtitle">A real SQLite database, running in this browser tab. No installs, no account.</p>
   </div>
-</section>
+</div>
 
 <main>
 
@@ -64,54 +38,55 @@
     you'll build in class. Edit the query and click Run.
   </p>
 
-  <div id="sandbox" class="card">
+  <div id="sandbox" class="sandbox-panel">
     <textarea id="query">SELECT c.customer_name, o.order_id, o.order_total
 FROM customers AS c
 JOIN orders AS o ON c.customer_id = o.customer_id
 ORDER BY o.order_total DESC;</textarea>
     <div class="controls">
-      <button id="run">Run query</button>
-      <button id="reset" class="secondary">Reset database</button>
+      <button id="run" class="btn">Run query</button>
+      <button id="reset" class="btn btn-secondary">Reset database</button>
     </div>
-    <div id="status">Loading SQL engine&hellip;</div>
+    <div id="status" class="status-pill">Loading SQL engine&hellip;</div>
     <div id="results"></div>
   </div>
 
   <h2>Exercises to try in the sandbox</h2>
-  <div class="grid">
-    <div class="card">
-      <span class="badge beginner">Beginner</span>
-      <h4>Menu detective</h4>
-      <ul class="exercise-list">
-        <li>List every item in the <code>menu</code> table, cheapest first.</li>
-        <li>Find every item priced under $5.</li>
-        <li>Count how many items are in each <code>category</code>.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <span class="badge intermediate">Intermediate</span>
-      <h4>Customers &amp; orders</h4>
-      <ul class="exercise-list">
-        <li>Find every customer who has placed <strong>more than one</strong> order.</li>
-        <li>Compute each customer's total spend using <code>SUM</code> and <code>GROUP BY</code>.</li>
-        <li>List customers who have <strong>never</strong> placed an order (hint: <code>LEFT JOIN</code>).</li>
-      </ul>
-    </div>
-    <div class="card advanced">
-      <span class="badge advanced">Advanced</span>
-      <h4>Push further</h4>
-      <ul class="exercise-list">
-        <li>Segment customers into <code>high</code> / <code>medium</code> / <code>low</code> spenders with <code>CASE</code>.</li>
-        <li>Find the top-spending customer using a subquery, without hardcoding a number.</li>
-        <li>Write a <code>CTE</code> that ranks menu items by revenue if every order item were the same category.</li>
-      </ul>
-    </div>
+
+  <div class="exercise-tier exercise-tier--beginner">
+    <span class="eyebrow">Beginner &middot; the menu table</span>
+    <ul class="exercise-list">
+      <li>List every item in the <code>menu</code> table, cheapest first.</li>
+      <li>Find every item priced under $5.</li>
+      <li>Count how many items are in each <code>category</code>.</li>
+    </ul>
   </div>
 
-  <div class="note">
-    Stuck? Compare with the worked examples on <a href="topics.html">Topics</a>, or (once the semester starts)
-    ask the course's 24/7 AI tutor Gem linked on Canvas &mdash; remember it's for <em>learning</em>, not for the
-    Semester Project itself.
+  <div class="exercise-tier exercise-tier--intermediate">
+    <span class="eyebrow">Intermediate &middot; customers &amp; orders</span>
+    <ul class="exercise-list">
+      <li>Find every customer who has placed <strong>more than one</strong> order.</li>
+      <li>Compute each customer's total spend using <code>SUM</code> and <code>GROUP BY</code>.</li>
+      <li>List customers who have <strong>never</strong> placed an order (hint: <code>LEFT JOIN</code>).</li>
+      <li>Find the average order size per customer, then sort from highest to lowest.</li>
+    </ul>
+  </div>
+
+  <div class="exercise-tier exercise-tier--advanced">
+    <span class="eyebrow">Advanced &middot; push past the syllabus</span>
+    <ul class="exercise-list">
+      <li>Segment customers into <code>high</code> / <code>medium</code> / <code>low</code> spenders with <code>CASE</code>.</li>
+      <li>Find the top-spending customer using a subquery, without hardcoding a number.</li>
+    </ul>
+  </div>
+
+  <div class="note note--crosslink">
+    Compare your answers with the worked examples on <a href="topics.html">Topics</a>.
+  </div>
+
+  <div class="note note--policy">
+    The course's AI tutor is there to help you learn this material. It is not permitted on the Semester Project;
+    see <a href="assignments.html">Assignments &amp; Project</a> for the details.
   </div>
 
 </main>

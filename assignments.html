@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Assignments &amp; Project &mdash; OPAN 3257</title>
+<title>Assignments &amp; Project &middot; OPAN 3257</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,89 +21,115 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-inner">
+<div class="page-title page-title--ruled">
+  <div class="page-title-inner">
+    <span class="eyebrow">Coming this semester</span>
     <h1>Assignments &amp; Semester Project</h1>
-    <p class="subtitle">A preview of what's coming &mdash; official instructions, datasets, due dates, and grading live on Canvas.</p>
+    <p class="subtitle">A preview only. Official instructions, starter files, and due dates post to Canvas as each one is assigned.</p>
   </div>
-</section>
+</div>
 
 <main>
 
-  <div class="note">
-    This page is a <strong>preview</strong>, not the assignment itself. Full instructions, starter files, and due
-    dates are posted on Canvas as each one is assigned &mdash; check there for anything graded.
+  <div class="note note--aside">
+    Nothing on this page is graded. Think of it as a heads-up: what's coming, and where to start practicing before
+    Canvas posts the real thing.
   </div>
 
   <h2>The five assignments</h2>
   <p>Each carries forward the business arc of the course, individually submitted with team discussion allowed (Type B).</p>
 
-  <div class="card">
-    <h4>Assignment 1 &middot; The Catalog &amp; the Customer</h4>
-    <p>Single-table analysis of a retail product catalog and a CRM export.</p>
-    <p><strong>Skills:</strong> <code>SELECT</code>, <code>WHERE</code>, text functions, arithmetic.</p>
-    <p><strong>Hint to get ahead:</strong> practice filtering and cleaning text on the <code>menu</code> table in the <a href="practice.html">sandbox</a> &mdash; that's the exact skill set.</p>
-  </div>
-
-  <div class="card">
-    <h4>Assignment 2 &middot; The Monday-Morning Report</h4>
-    <p>The recurring KPI questions every operator asks: revenue by region, top products, repeat-customer share.</p>
-    <p><strong>Skills:</strong> <code>GROUP BY</code>, <code>HAVING</code>, aggregates, <code>ORDER BY</code>/<code>LIMIT</code>.</p>
-    <p><strong>Hint to get ahead:</strong> the "Customers &amp; orders" exercises on <a href="practice.html">Practice</a> use the same pattern &mdash; total spend per customer.</p>
-  </div>
-
-  <div class="card">
-    <h4>Assignment 3 &middot; Moneyball</h4>
-    <p>The original data-driven hiring problem: join player, salary, and performance tables to find undervalued talent.</p>
-    <p><strong>Skills:</strong> multi-table <code>JOIN</code>s.</p>
-    <p><strong>Hint to get ahead:</strong> review the JOIN example on <a href="topics.html">Topics</a> &mdash; connecting a "who" table to a "what happened" table is the whole idea.</p>
-  </div>
-
-  <div class="card">
-    <h4>Assignment 4 &middot; Packages, Please</h4>
-    <p>Trace lost parcels through a last-mile delivery database &mdash; detective work with joins and subqueries.</p>
-    <p><strong>Skills:</strong> <code>JOIN</code> + subqueries.</p>
-    <p><strong>Hint to get ahead:</strong> try the "advanced" subquery exercise on <a href="practice.html">Practice</a> (top-spending customer without hardcoding a number).</p>
-  </div>
-
-  <div class="card">
-    <h4>Assignment 5 &middot; The SQL Gauntlet</h4>
-    <p>Ten progressively harder analytical queries over a large multi-table dataset, run in DuckDB. Your capstone in place of a final exam &mdash; there is no final exam in this course.</p>
-    <p><strong>Skills:</strong> everything, at warehouse scale.</p>
+  <div class="assignment-ledger">
+    <div class="assignment-entry">
+      <span class="entry-number">01</span>
+      <div>
+        <h4>The Catalog &amp; the Customer</h4>
+        <p>Single-table analysis of a retail product catalog and a CRM export.</p>
+        <div class="tag-row"><span class="tag">SELECT</span><span class="tag">WHERE</span><span class="tag">text functions</span><span class="tag">arithmetic</span></div>
+        <p class="hint">Get ahead: practice filtering and cleaning text on the <code>menu</code> table in the <a href="practice.html">sandbox</a>. Same skill set.</p>
+      </div>
+    </div>
+    <div class="assignment-entry">
+      <span class="entry-number">02</span>
+      <div>
+        <h4>The Monday-Morning Report</h4>
+        <p>The recurring KPI questions every operator asks: revenue by region, top products, repeat-customer share.</p>
+        <div class="tag-row"><span class="tag">GROUP BY</span><span class="tag">HAVING</span><span class="tag">aggregates</span><span class="tag">ORDER BY / LIMIT</span></div>
+        <p class="hint">Get ahead: the intermediate exercises on <a href="practice.html">Practice</a> use the same pattern, total spend per customer.</p>
+      </div>
+    </div>
+    <div class="assignment-entry">
+      <span class="entry-number">03</span>
+      <div>
+        <h4>Moneyball</h4>
+        <p>The original data-driven hiring problem: join player, salary, and performance tables to find undervalued talent.</p>
+        <div class="tag-row"><span class="tag">multi-table JOIN</span></div>
+        <p class="hint">Get ahead: review the JOIN example on <a href="topics.html">Topics</a>. Connecting a "who" table to a "what happened" table is the whole idea.</p>
+      </div>
+    </div>
+    <div class="assignment-entry">
+      <span class="entry-number">04</span>
+      <div>
+        <h4>Packages, Please</h4>
+        <p>Trace lost parcels through a last-mile delivery database: detective work with joins and subqueries.</p>
+        <div class="tag-row"><span class="tag">JOIN</span><span class="tag">subqueries</span></div>
+        <p class="hint">Get ahead: try the advanced subquery exercise on <a href="practice.html">Practice</a> (top-spending customer, no hardcoded number).</p>
+      </div>
+    </div>
+    <div class="assignment-entry">
+      <span class="entry-number">05</span>
+      <div>
+        <h4>The SQL Gauntlet</h4>
+        <p>Ten progressively harder analytical queries over a large multi-table dataset, run in DuckDB. Your capstone in place of a final exam; there is no final exam in this course.</p>
+        <div class="tag-row"><span class="tag">everything, at warehouse scale</span></div>
+      </div>
+    </div>
   </div>
 
   <h2>Mini-Challenges</h2>
-  <p>Six short, individual, in-class problems (lowest score dropped): a campus coffee-shop menu table, extracting fields from a customer table, fraud/returns-screening filters, building and populating an inventory table, a JOIN store analysis, and a <code>GROUP BY</code> customer&ndash;order analysis. The sandbox on <a href="practice.html">Practice</a> is good warm-up for all six.</p>
+  <p>Six short, individual, in-class problems. Lowest score dropped.</p>
+  <div class="tag-row">
+    <span class="tag">Coffee-shop menu table</span>
+    <span class="tag">Customer field extraction</span>
+    <span class="tag">Fraud &amp; returns filter</span>
+    <span class="tag">Inventory build &amp; populate</span>
+    <span class="tag">Store JOIN analysis</span>
+    <span class="tag">Customer&ndash;order GROUP BY</span>
+  </div>
 
   <h2>Semester Project: pick your industry, run its data</h2>
-  <p>
-    Working in teams of 3&ndash;4, you'll act as an analytics consulting group reporting to a COO: design and build
-    a relational database for a real operating business, query it to locate operational bottlenecks, and ship the
-    results as a live Streamlit dashboard. One project, two parts &mdash; a midterm design/build submission, then a
-    final analyze/recommend/deploy submission with an individual oral defense.
-  </p>
+  <div class="project-brief">
+    <p>
+      Working in teams of three or four, you'll act as an analytics consulting group reporting to a COO: design a
+      database for a real business, query it to find operational bottlenecks, and ship the results as a live
+      Streamlit dashboard. It's one project in two parts: a midterm design-and-build submission, then a final
+      analysis with an individual oral defense.
+    </p>
+  </div>
 
-  <div class="grid">
-    <div class="card">
-      <h4>Track R &middot; Retail &amp; E-Commerce</h4>
-      <p>~100k real orders across eight linked tables (Olist Brazilian e-commerce). Where do delivery promises slip? Do late deliveries cost review stars?</p>
+  <div class="track-grid">
+    <div class="track-card">
+      <span class="track-letter">R</span>
+      <h4>Retail &amp; E-Commerce</h4>
+      <p>~100,000 real Olist orders across eight linked tables. Somewhere in there, a seller-region pair is quietly driving late deliveries and lost review stars.</p>
     </div>
-    <div class="card">
-      <h4>Track D &middot; Last-Mile Delivery &amp; Logistics</h4>
-      <p>Depots, drivers, vehicles, routes, packages, delivery attempts. What's the failed-first-attempt rate, and what does redelivery cost?</p>
+    <div class="track-card">
+      <span class="track-letter">D</span>
+      <h4>Last-Mile Delivery &amp; Logistics</h4>
+      <p>Depots, drivers, vehicles, routes, and delivery attempts, modeled on three years in last-mile logistics. A failed first attempt costs more than a successful one; the data says exactly how much.</p>
     </div>
-    <div class="card">
-      <h4>Track H &middot; Hospitality &amp; Marketplace</h4>
-      <p>An Inside Airbnb city extract. Which neighborhoods are supply-constrained? What separates high-occupancy hosts?</p>
+    <div class="track-card">
+      <span class="track-letter">H</span>
+      <h4>Hospitality &amp; Marketplace</h4>
+      <p>An Inside Airbnb city extract: listings, calendars, reviews. Which neighborhoods are supply-constrained, and what actually separates a high-occupancy host from an average one?</p>
     </div>
   </div>
 
-  <p>Teams may also propose their own dataset with instructor approval &mdash; including healthcare operations.</p>
+  <p>Teams may also propose their own dataset with instructor approval, including healthcare operations.</p>
 
-  <div class="note">
-    <strong>Note on AI tools:</strong> the course provides a 24/7 AI tutor to help you <em>learn</em> SQL, but
-    generative AI tools are <strong>not permitted on the Semester Project</strong> itself (Parts 1 and 2). Credit is
-    earned through queries you can defend orally.
+  <div class="note note--policy">
+    Generative AI tools are not permitted on the Semester Project, Parts 1 and 2. Tools like Grammarly for language
+    help are fine. Every query you submit should be one you can defend out loud.
   </div>
 
 </main>

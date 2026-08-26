@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OPAN 3257 &mdash; Databases for Business</title>
+<title>OPAN 3257: Databases for Business</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -23,9 +23,10 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <h1>Databases for Business: From First Query to Live Dashboard</h1>
-    <p class="subtitle">OPAN 3257 &middot; Develop/Managing Data Bases &middot; McDonough School of Business, Georgetown University &middot; Fall 2026</p>
-    <div class="tags">
+    <span class="eyebrow">McDonough School of Business &middot; Fall 2026</span>
+    <h1>Databases for Business</h1>
+    <p class="subtitle">OPAN 3257, Develop/Managing Data Bases. From your first query to a dashboard you can put in a portfolio.</p>
+    <div class="tag-row">
       <span class="tag">SQL</span>
       <span class="tag">SQLite</span>
       <span class="tag">DuckDB</span>
@@ -40,60 +41,106 @@
 
   <h2>Why this course</h2>
   <p>
-    Behind every consequential business application sits a database: the point-of-sale terminal, the cart holding your
-    online order, the reservation system, the ledger that knows your bank balance to the cent. This course treats
-    reading, questioning, and designing databases as a core management skill, not a specialist's trick. You'll work
-    with <strong>SQLite</strong> to build and run a business database (OLTP), and <strong>DuckDB</strong> &mdash; a
-    free, warehouse-grade analytical engine &mdash; to study it the way analysts do at work (OLAP).
+    A point-of-sale terminal, a shopping cart, a flight reservation, a bank balance to the cent: each one is really
+    a database wearing a business costume. This course treats reading, questioning, and designing that database as
+    a core management skill, not a specialist's trick. You'll build with <strong>SQLite</strong>, which runs the
+    business day to day (OLTP), and query with <strong>DuckDB</strong>, a free warehouse-grade engine that studies
+    the business the way analysts do at work (OLAP).
   </p>
   <p>
-    This course assumes you know <strong>nothing</strong> about databases or coding. We start from zero and build
-    step-by-step. By the end of the semester you'll have a functioning multi-table business database, a
-    portfolio-ready analysis, and a live Streamlit dashboard at a URL you can share.
+    This course assumes you know nothing about databases or coding yet, and it doesn't stay that way for long:
+    each class builds directly on the last. Two things carry you through the semester and outlast it &mdash; a
+    multi-table business database you designed yourself, and a live Streamlit dashboard built on top of it that
+    you can point people to after the class ends.
   </p>
 
   <h2>The arc of the semester</h2>
-  <p>Seven verbs, each recast for business &mdash; see the <a href="topics.html">Topics</a> page for the full walk-through:</p>
-  <div class="grid">
-    <div class="card"><h4>1. Query</h4>Ask precise questions of data with <code>SELECT</code> and <code>WHERE</code>.</div>
-    <div class="card"><h4>2. Relate</h4>Connect customers to orders to products with <code>JOIN</code>.</div>
-    <div class="card"><h4>3. Design</h4>Model a business process as tables, keys, and constraints.</div>
-    <div class="card"><h4>4. Write</h4><code>INSERT</code>/<code>UPDATE</code>/<code>DELETE</code> &mdash; and why transactions keep a ledger honest.</div>
-    <div class="card"><h4>5. View</h4>Package queries into reusable reports with views and CTEs.</div>
-    <div class="card"><h4>6. Optimize</h4>Why indexes make queries fast, and what that costs.</div>
-    <div class="card"><h4>7. Scale</h4>From a file on your laptop to DuckDB, warehouses, and the cloud.</div>
+  <p>Seven verbs carry the course, in order. The full walk-through, with a runnable example for each, is on <a href="topics.html">Topics</a>.</p>
+
+  <div class="curriculum-steps">
+    <div class="curriculum-step">
+      <span class="step-number">1</span>
+      <h4>Query</h4>
+      <p>Ask precise questions of data with <code>SELECT</code> and <code>WHERE</code>.</p>
+    </div>
+    <div class="curriculum-step">
+      <span class="step-number">2</span>
+      <h4>Relate</h4>
+      <p>Connect customers to orders to products with <code>JOIN</code>.</p>
+    </div>
+    <div class="curriculum-step">
+      <span class="step-number">3</span>
+      <h4>Design</h4>
+      <p>Model a business process as tables, keys, and constraints.</p>
+    </div>
+    <div class="curriculum-step">
+      <span class="step-number">4</span>
+      <h4>Write</h4>
+      <p><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, and why the transaction is what keeps a ledger honest.</p>
+    </div>
+    <div class="curriculum-step">
+      <span class="step-number">5</span>
+      <h4>View</h4>
+      <p>Package queries into reusable reports with views and CTEs.</p>
+    </div>
+    <div class="curriculum-step">
+      <span class="step-number">6</span>
+      <h4>Optimize</h4>
+      <p>See what an index actually costs, and what it buys you.</p>
+    </div>
+    <div class="curriculum-step">
+      <span class="step-number">7</span>
+      <h4>Scale</h4>
+      <p>From a file on your laptop to DuckDB, warehouses, and the cloud.</p>
+    </div>
   </div>
 
   <h2>Get hands-on before Week 1</h2>
   <p>
-    New to coding entirely, or just want a head start before the first class? Start with
-    <a href="practice.html">Practice</a> for zero-install, browser-based SQL you can run today, then preview what's
-    ahead on <a href="topics.html">Topics</a>.
+    New to coding, or just want a head start before the first class? Start with <a href="practice.html">Practice</a>
+    for zero-install SQL you can run right in this browser tab today, then preview what's ahead on
+    <a href="topics.html">Topics</a>.
   </p>
-  <a class="btn" href="practice.html">Start practicing &rarr;</a>
 
-  <h2>About the instructor</h2>
-  <div class="card">
-    <h4>Dr. Emisa Nategh</h4>
-    <p>Assistant Teaching Professor of Operations and Analytics, McDonough School of Business, Georgetown University.</p>
-    <p>
-      Before Georgetown, Dr. Nategh worked as an NLP/ML scientist at the Fred Hutchinson Cancer Research Center and
-      as a research scientist at Convoy Inc., the digital freight marketplace behind this course's Track D
-      (Last-Mile Delivery &amp; Logistics) project. She holds a Ph.D. in Operations Management from the Foster
-      School of Business at the University of Washington, an M.S. in Marketing Analytics from the University of
-      Rochester, and a B.Sc. and M.S. in Applied Mathematics from Sharif University of Technology. Her research
-      applies machine learning to data-driven decision-making in healthcare, the sharing economy, and pricing, and
-      she has taught database development &amp; management, business analytics, and supply chain analytics across
-      Georgetown's MBA, MSBA, and undergraduate programs.
-    </p>
-    <p><strong>Email:</strong> <a href="mailto:en471@georgetown.edu">en471@georgetown.edu</a><br>
-    <strong>Office:</strong> Hariri Building, Floor 5&ndash;502<br>
-    <strong>Office Hours:</strong> By appointment</p>
+  <div class="cta-panel">
+    <h3>Run your first query today</h3>
+    <p>A working SQLite database is one click away, no account and nothing to install.</p>
+    <a class="btn" href="practice.html">Start practicing &rarr;</a>
   </div>
 
-  <div class="note">
-    Full course logistics, grading, and due dates live on <strong>Canvas</strong> &mdash; this site is a companion
-    for extra hands-on practice, not a replacement for the syllabus.
+  <h2>About the instructor</h2>
+  <div class="bio-panel">
+    <div class="bio-contact">
+      <h4>Dr. Emisa Nategh</h4>
+      <p class="role">Assistant Teaching Professor, Operations and Analytics</p>
+      <dl>
+        <dt>Email</dt>
+        <dd><a href="mailto:en471@georgetown.edu">en471@georgetown.edu</a></dd>
+        <dt>Office</dt>
+        <dd>Hariri Building, Floor 5&ndash;502</dd>
+        <dt>Office Hours</dt>
+        <dd>By appointment</dd>
+      </dl>
+    </div>
+    <div class="bio-body">
+      <p>
+        Before Georgetown, Dr. Nategh worked as an NLP/ML scientist at the Fred Hutchinson Cancer Research Center
+        and as a research scientist at Convoy Inc., the digital freight marketplace behind this course's Track D
+        (Last-Mile Delivery &amp; Logistics) project. She holds a Ph.D. in Operations Management from the Foster
+        School of Business at the University of Washington, an M.S. in Marketing Analytics from the University of
+        Rochester, and a B.Sc. and M.S. in Applied Mathematics from Sharif University of Technology.
+      </p>
+      <p>
+        Her research applies machine learning to data-driven decision-making in healthcare, the sharing economy,
+        and pricing. She has taught database development &amp; management, business analytics, and supply chain
+        analytics across Georgetown's MBA, MSBA, and undergraduate programs.
+      </p>
+    </div>
+  </div>
+
+  <div class="note note--aside">
+    Canvas has the logistics that matter: grading, due dates, and the official assignment instructions. This site
+    is extra practice space to use alongside it.
   </div>
 
 </main>

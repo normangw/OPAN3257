@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advanced &mdash; OPAN 3257</title>
+<title>Going Further &middot; OPAN 3257</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,24 +21,25 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-inner">
+<div class="page-title page-title--accent">
+  <div class="page-title-inner">
+    <span class="eyebrow">Optional</span>
     <h1>Advanced &amp; Enrichment</h1>
     <p class="subtitle">For students who already know some SQL, or who finish early and want somewhere further to go.</p>
   </div>
-</section>
+</div>
 
 <main>
 
-  <div class="note">
-    The standard for this course never moves &mdash; everyone reaches the same core skills. This page is one of the
-    routes further, for students who want it. It mirrors the course's own Enrichment module.
-  </div>
+  <p>
+    Nothing here is required, and nothing here is graded differently if you skip it. It mirrors the course's own
+    Enrichment module on Canvas.
+  </p>
 
   <h2>Window functions: one step beyond GROUP BY</h2>
   <p>
-    <code>GROUP BY</code> collapses rows into one per group. Window functions let you rank or compare rows
-    <em>without</em> collapsing them &mdash; e.g. "each order, plus that customer's rank by spend."
+    <code>GROUP BY</code> collapses rows into one per group. Window functions let you rank or compare rows without
+    collapsing them: think "each order, plus that customer's rank by spend."
   </p>
   <pre><code>SELECT
     customer_id,
@@ -50,17 +51,21 @@ FROM orders;</code></pre>
 
   <h2>What's under the hood: indexes &amp; query plans</h2>
   <p>
-    An index is a lookup structure that lets the database skip scanning every row &mdash; the same reason a book's
-    index beats reading page by page. In SQLite, you can see how a query will actually run with:
+    SQLite decides how it will run a query before it runs it. That decision is called the query plan, and you can
+    see it directly:
   </p>
   <pre><code>EXPLAIN QUERY PLAN
 SELECT * FROM orders WHERE customer_id = 3;</code></pre>
-  <p>Once you add <code>CREATE INDEX idx_customer ON orders(customer_id);</code>, re-run the plan and compare.</p>
+  <p>
+    Without an index, that plan reads <code>SCAN orders</code>: check every row. Add one, and it flips to
+    <code>SEARCH orders USING INDEX idx_customer</code>: jump straight to the matching rows.
+  </p>
+  <pre><code>CREATE INDEX idx_customer ON orders(customer_id);</code></pre>
 
   <h2>DuckDB over real files, not toy tables</h2>
   <p>
-    DuckDB can query CSV or Parquet files directly &mdash; no import step &mdash; which is what makes it
-    "warehouse-grade." This is the pattern behind the NYC TLC trip data and the course's Data Import Bootcamp.
+    DuckDB queries CSV or Parquet files directly, with no import step. That's what "warehouse-grade" means in
+    practice, and it's the pattern behind the NYC TLC trip data and the course's Data Import Bootcamp.
   </p>
   <pre><code>-- millions of rows, zero installation
 SELECT
@@ -74,29 +79,26 @@ ORDER BY 1;</code></pre>
   <h2>Extra credit preview: "ask your data"</h2>
   <p>
     Advanced teams can wire a natural-language query cell into their final Streamlit dashboard using a free-tier
-    LLM API &mdash; the user types a question in English, the app turns it into SQL, runs it, and shows the result.
-    It's optional extra credit on the Semester Project; the Enrichment module on Canvas has the guide once the
-    semester starts.
+    LLM API. The user types a question in English, the app turns it into SQL, runs it, and shows the result. It's
+    optional extra credit on the Semester Project; the Enrichment module on Canvas has the guide once the semester
+    starts.
   </p>
 
   <h2>Go deeper on your own</h2>
-  <div class="grid">
-    <div class="card advanced">
-      <h4>CS50 SQL</h4>
-      <p>Harvard's free, in-depth SQL lecture notes &mdash; a good second explanation of anything covered in class.</p>
-      <a href="https://cs50.harvard.edu/sql/" target="_blank" rel="noopener">cs50.harvard.edu/sql</a>
-    </div>
-    <div class="card advanced">
-      <h4>Official PostgreSQL Tutorial</h4>
-      <p>Once you're comfortable in SQLite, this shows what changes (and what doesn't) in a production-grade RDBMS.</p>
-      <a href="https://www.postgresql.org/docs/current/tutorial.html" target="_blank" rel="noopener">postgresql.org/docs</a>
-    </div>
-    <div class="card advanced">
-      <h4>SQLBolt</h4>
-      <p>Short interactive drills &mdash; useful to speed-run syntax you already half-know.</p>
-      <a href="https://sqlbolt.com" target="_blank" rel="noopener">sqlbolt.com</a>
-    </div>
-  </div>
+  <ul class="reading-list">
+    <li class="reading-item">
+      <a href="https://cs50.harvard.edu/sql/" target="_blank" rel="noopener">CS50 SQL</a>
+      <p>Harvard's free, in-depth lecture notes. A solid second explanation for anything covered in class.</p>
+    </li>
+    <li class="reading-item">
+      <a href="https://www.postgresql.org/docs/current/tutorial.html" target="_blank" rel="noopener">Official PostgreSQL Tutorial</a>
+      <p>Once SQLite feels comfortable, this shows what changes, and what doesn't, in a production-grade RDBMS.</p>
+    </li>
+    <li class="reading-item">
+      <a href="https://sqlbolt.com" target="_blank" rel="noopener">SQLBolt</a>
+      <p>Short interactive drills. Useful for speed-running syntax you already half-know.</p>
+    </li>
+  </ul>
 
 </main>
 
